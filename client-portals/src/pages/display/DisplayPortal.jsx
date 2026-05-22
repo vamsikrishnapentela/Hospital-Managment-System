@@ -61,17 +61,46 @@ const DisplayPortal = () => {
         return [tokenData, ...prev].slice(0, 3);
       });
       
-      // Play Bell
-      playBell();
+      // We rely on audioEnabled state in the effect, but socket listeners only have closure over initial state unless we use refs or wrap it.
+      // Better way: use document or window properties or a ref to check if audio is allowed.
       
-      // Text-to-speech announcement (delayed slightly so bell plays first)
+      // Play Bell
+      try {
+        const ctx = new (window.AudioContext || window.webkitAudioContext)();
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(800, ctx.currentTime);
+        osc.frequency.exponentialRampToValueAtTime(300, ctx.currentTime + 1.5);
+        gain.gain.setValueAtTime(1, ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 1.5);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start();
+        osc.stop(ctx.currentTime + 1.5);
+      } catch (e) {
+        console.log('Audio not supported or blocked', e);
+      }
+      
+      // Text-to-speech announcement
       setTimeout(() => {
         if ('speechSynthesis' in window) {
-          const announcement = new SpeechSynthesisUtterance(
+          // English Announcement
+          const englishAnnouncement = new SpeechSynthesisUtterance(
             `Token number ${tokenData.code}, patient ${tokenData.patientRef?.name}, please proceed to Room ${tokenData.roomNumber}`
           );
-          announcement.rate = 0.9;
-          window.speechSynthesis.speak(announcement);
+          englishAnnouncement.lang = 'en-IN';
+          englishAnnouncement.rate = 0.9;
+          
+          // Telugu Announcement (Transliterated so ANY default voice can read it if Telugu script is unsupported)
+          const teluguAnnouncement = new SpeechSynthesisUtterance(
+            `Token number ${tokenData.code}, patient ${tokenData.patientRef?.name}, dayachesi room ${tokenData.roomNumber} ku vellandi`
+          );
+          teluguAnnouncement.lang = 'en-IN'; // Use Indian English accent to read the transliterated Telugu perfectly
+          teluguAnnouncement.rate = 0.9;
+
+          window.speechSynthesis.speak(englishAnnouncement);
+          window.speechSynthesis.speak(teluguAnnouncement);
         }
       }, 1000);
 
@@ -85,10 +114,25 @@ const DisplayPortal = () => {
     socket.on('new-token-generated', () => {
       fetchQueue();
     });
+    
+    // Attempt to silently initialize speech synthesis
+    if ('speechSynthesis' in window) {
+      window.speechSynthesis.getVoices();
+    }
+
+    const unlockAudio = () => {
+      try {
+        const ctx = new (window.AudioContext || window.webkitAudioContext)();
+        ctx.resume();
+      } catch(e) {}
+      document.removeEventListener('click', unlockAudio);
+    };
+    document.addEventListener('click', unlockAudio);
 
     return () => {
       clearInterval(timer);
       socket.disconnect();
+      document.removeEventListener('click', unlockAudio);
     };
   }, []);
 
