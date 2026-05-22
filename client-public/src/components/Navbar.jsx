@@ -22,7 +22,7 @@ const Navbar = () => {
             <Link to="/services" className="text-slate-600 hover:text-primary font-medium transition-colors">Services</Link>
             <Link to="/contact" className="text-slate-600 hover:text-primary font-medium transition-colors">Contact</Link>
             
-            <a href="http://localhost:5174" className="text-slate-600 hover:text-primary font-medium transition-colors">
+            <a href="https://hospital-managment-system-five.vercel.app" className="text-slate-600 hover:text-primary font-medium transition-colors">
               Portals
             </a>
 

@@ -193,7 +193,7 @@ const Home = () => {
             <div>
               <h3 className="font-bold text-slate-800 text-lg mb-1">Patient Portal</h3>
               <p className="text-slate-500 text-sm mb-3">Access lab results, prescriptions, and billing.</p>
-              <a href="http://localhost:5174/patient" className="text-accent font-bold text-sm hover:underline">Login Now &rarr;</a>
+              <a href="https://hospital-managment-system-five.vercel.app/patient" className="text-accent font-bold text-sm hover:underline">Login Now &rarr;</a>
             </div>
           </div>
         </div>
@@ -332,7 +332,7 @@ const Home = () => {
             <ul className="space-y-2 text-sm">
               <li><a href="/doctors" className="hover:text-primary transition-colors">Find a Doctor</a></li>
               <li><a href="/book-appointment" className="hover:text-primary transition-colors">Book Appointment</a></li>
-              <li><a href="http://localhost:5174/patient" className="hover:text-primary transition-colors">Patient Portal</a></li>
+              <li><a href="https://hospital-managment-system-five.vercel.app/patient" className="hover:text-primary transition-colors">Patient Portal</a></li>
               <li><a href="/contact" className="hover:text-primary transition-colors">Emergency Services</a></li>
             </ul>
           </div>
