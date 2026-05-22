@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { FaUser, FaCalendarCheck, FaFilePrescription, FaNotesMedical, FaSignOutAlt } from 'react-icons/fa';
 
 const Sidebar = () => (
-  <aside className="w-64 bg-white border-r border-slate-200 fixed h-screen z-10">
+  <aside className="w-full md:w-64 bg-white border-b md:border-b-0 md:border-r border-slate-200 relative md:fixed h-auto md:h-screen z-10 print:hidden shrink-0 flex flex-col md:block">
     <div className="p-6">
       <div className="flex items-center gap-3 mb-10">
         <div className="w-10 h-10 bg-primary rounded-xl flex items-center justify-center text-white shadow-lg shadow-primary/30">
@@ -11,7 +11,7 @@ const Sidebar = () => (
         </div>
         <div>
           <span className="font-display font-bold text-xl text-slate-900 tracking-tight block leading-none">
-            MediCore
+            Ramu Hospital
           </span>
           <span className="text-xs text-slate-500 font-medium">Patient Portal</span>
         </div>
@@ -40,7 +40,7 @@ const Sidebar = () => (
       </nav>
     </div>
 
-    <div className="absolute bottom-0 w-full p-4 border-t border-slate-200">
+    <div className="mt-auto md:mt-0 md:absolute md:bottom-0 w-full p-4 border-t border-slate-200">
       <button className="flex items-center gap-3 px-4 py-3 w-full text-danger hover:bg-danger/10 rounded-lg font-medium transition-colors">
         <FaSignOutAlt /> Logout
       </button>
@@ -50,10 +50,10 @@ const Sidebar = () => (
 
 const PatientDashboard = () => {
   return (
-    <div className="flex bg-slate-50 min-h-screen text-slate-700">
+    <div className="flex flex-col md:flex-row bg-slate-50 min-h-screen text-slate-700">
       <Sidebar />
 
-      <main className="ml-64 flex-1 p-8">
+      <main className="md:ml-64 flex-1 p-4 md:p-8">
         <div className="max-w-5xl mx-auto">
           <header className="flex justify-between items-end mb-8">
             <div>
@@ -93,11 +93,11 @@ const PatientDashboard = () => {
             </div>
           </div>
 
-          <div className="bg-white border border-slate-200 rounded-3xl p-8 shadow-xl">
+          <div className="bg-white border border-slate-200 rounded-3xl p-8 shadow-sm overflow-x-auto">
             <h2 className="text-xl font-display font-bold text-slate-900 mb-6">Past Visits</h2>
 
             <div className="overflow-hidden rounded-2xl border border-slate-200">
-              <table className="w-full text-left">
+              <table className="w-full text-left min-w-max">
                 <thead className="bg-slate-50 border-b border-slate-200">
                   <tr>
                     <th className="px-6 py-4 font-semibold text-slate-500 text-sm">Date</th>

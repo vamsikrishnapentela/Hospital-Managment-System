@@ -100,7 +100,7 @@ const DisplayPortal = () => {
           <div className="w-12 h-12 bg-primary rounded-xl flex items-center justify-center text-white shadow-lg shadow-primary/20">
             <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 448 512" height="1.5em" width="1.5em" xmlns="http://www.w3.org/2000/svg"><path d="M436 96h-68.5c-4.4-31-31-56-63.5-56h-160c-32.5 0-59.1 25-63.5 56H12c-6.6 0-12 5.4-12 12v32c0 6.6 5.4 12 12 12h32v256H12c-6.6 0-12 5.4-12 12v32c0 6.6 5.4 12 12 12h424c6.6 0 12-5.4 12-12v-32c0-6.6-5.4-12-12-12h-32V152h32c6.6 0 12-5.4 12-12v-32c0-6.6-5.4-12-12-12z"></path></svg>
           </div>
-          <span className="font-display font-bold text-3xl tracking-tight">MediCore Hospital</span>
+          <span className="font-display font-bold text-3xl tracking-tight">Ramu Hospital</span>
         </div>
         <div className="text-4xl font-mono font-light tracking-wider text-slate-700">
           {time.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
@@ -194,7 +194,7 @@ const DisplayPortal = () => {
           transition={{ repeat: Infinity, duration: 25, ease: "linear" }}
           className="whitespace-nowrap text-xl font-bold text-slate-900 tracking-wide"
         >
-          Welcome to MediCore Hospital — Please proceed to the indicated room when your token is called. Maintain silence in the waiting area.
+          Welcome to Ramu Hospital — Please proceed to the indicated room when your token is called. Maintain silence in the waiting area.
         </motion.div>
       </div>
     </div>

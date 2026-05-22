@@ -23,7 +23,7 @@ const HowItWorks = () => {
         <div className="flex justify-between items-center mb-16">
           <div>
             <h1 className="text-4xl md:text-5xl font-display font-bold text-slate-900 mb-4">Patient Journey</h1>
-            <p className="text-lg text-slate-600">A clear visualization of the flow through MediCore Hospital.</p>
+            <p className="text-lg text-slate-600">A clear visualization of the flow through Ramu Hospital.</p>
           </div>
           <div className="flex gap-4">
             <Link to="/">

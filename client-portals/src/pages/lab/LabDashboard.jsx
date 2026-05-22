@@ -8,7 +8,7 @@ import io from 'socket.io-client';
 const API_BASE = 'https://hospital-managment-system-tsa1.onrender.com/api';
 
 const Sidebar = () => (
-  <aside className="w-64 bg-white border-r border-slate-200 fixed h-screen z-10">
+  <aside className="w-full md:w-64 bg-white border-b md:border-b-0 md:border-r border-slate-200 relative md:fixed h-auto md:h-screen z-10 print:hidden shrink-0 flex flex-col md:block">
     <div className="p-6">
       <div className="flex items-center gap-3 mb-10">
         <div className="w-10 h-10 bg-primary rounded-xl flex items-center justify-center text-white shadow-lg shadow-primary/30">
@@ -16,7 +16,7 @@ const Sidebar = () => (
         </div>
         <div>
           <span className="font-display font-bold text-xl text-primary tracking-tight block leading-none">
-            MediCore
+            Ramu Hospital
           </span>
           <span className="text-xs text-slate-500 font-medium">Lab Portal</span>
         </div>
@@ -88,10 +88,10 @@ const LabDashboard = () => {
   );
 
   return (
-    <div className="flex bg-surface min-h-screen text-slate-700">
+    <div className="flex flex-col md:flex-row bg-surface min-h-screen text-slate-700">
       <Sidebar />
 
-      <main className="ml-64 flex-1 p-8">
+      <main className="md:ml-64 flex-1 p-4 md:p-8">
         <header className="mb-8 flex justify-between items-end">
           <div>
             <h1 className="text-3xl font-display font-bold text-slate-800">Laboratory Station</h1>

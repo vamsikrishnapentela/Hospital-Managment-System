@@ -1,5 +1,6 @@
 import express from 'express';
 import { registerPatient, generateToken, getActiveQueue, getDoctors, searchPatients, getPatientHistory } from '../controllers/receptionController.js';
+import { getSettings } from '../controllers/adminController.js';
 
 const router = express.Router();
 
@@ -10,5 +11,6 @@ router.get('/queue', getActiveQueue);
 router.get('/doctors', getDoctors);
 router.get('/patients', searchPatients);
 router.get('/patient/:id/history', getPatientHistory);
+router.get('/settings', getSettings);
 
 export default router;

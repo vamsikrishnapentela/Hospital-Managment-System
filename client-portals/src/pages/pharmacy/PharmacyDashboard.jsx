@@ -8,7 +8,7 @@ import io from 'socket.io-client';
 const API_BASE = 'https://hospital-managment-system-tsa1.onrender.com/api';
 
 const Sidebar = () => (
-  <aside className="w-64 bg-white border-r border-slate-200 fixed h-screen z-10 print:hidden">
+  <aside className="w-full md:w-64 bg-white border-b md:border-b-0 md:border-r border-slate-200 relative md:fixed h-auto md:h-screen z-10 print:hidden shrink-0 flex flex-col md:block">
     <div className="p-6">
       <div className="flex items-center gap-3 mb-10">
         <div className="w-10 h-10 bg-primary rounded-xl flex items-center justify-center text-white shadow-lg shadow-primary/30">
@@ -16,7 +16,7 @@ const Sidebar = () => (
         </div>
         <div>
           <span className="font-display font-bold text-xl text-primary tracking-tight block leading-none">
-            MediCore
+            Ramu Hospital
           </span>
           <span className="text-xs text-slate-500 font-medium">Pharmacy</span>
         </div>
@@ -91,10 +91,10 @@ const PharmacyDashboard = () => {
   );
 
   return (
-    <div className="flex bg-surface min-h-screen text-slate-700">
+    <div className="flex flex-col md:flex-row bg-surface min-h-screen text-slate-700">
       <Sidebar />
 
-      <main className="ml-64 flex-1 p-8 print:p-0 print:ml-0 print:bg-white">
+      <main className="md:ml-64 flex-1 p-4 md:p-8 print:p-0 print:md:ml-0 print:ml-0 print:bg-white">
         <div className="print:hidden">
           <header className="mb-8 flex justify-between items-end">
             <div>
@@ -190,7 +190,7 @@ const PharmacyDashboard = () => {
                   <div className="mb-8">
                     <h3 className="text-sm font-bold text-slate-500 uppercase tracking-wider mb-4">Prescribed Medicines</h3>
                     <div className="bg-slate-50 rounded-xl border border-slate-200 overflow-hidden">
-                      <table className="w-full text-left">
+                      <table className="w-full text-left min-w-[600px]">
                         <thead className="bg-slate-100 border-b border-slate-200">
                           <tr>
                             <th className="px-4 py-3 text-sm font-bold text-slate-600">Medicine</th>
@@ -290,13 +290,13 @@ const PharmacyDashboard = () => {
 
                 <div className="print-area">
                   <div className="text-center mb-8 border-b border-slate-200 pb-6">
-                    <h2 className="text-3xl font-display font-bold text-slate-800">MediCore Pharmacy</h2>
+                    <h2 className="text-3xl font-display font-bold text-slate-800">Ramu Pharmacy</h2>
                     <p className="text-slate-500 mt-1">Official Medical Invoice</p>
                     <p className="text-sm text-slate-400 mt-2">Date: {new Date().toLocaleString()}</p>
                   </div>
 
                   <div className="flex justify-between mb-8 text-sm">
-                    <div>
+                    <div className="overflow-x-auto">
                       <p className="text-slate-500 uppercase tracking-wider text-xs mb-1">Patient Details</p>
                       <p className="font-bold text-slate-800 text-lg">{activePrescription.patientRef?.name}</p>
                       <p className="text-slate-600">ID: {activePrescription.patientRef?.patientId}</p>
@@ -308,7 +308,7 @@ const PharmacyDashboard = () => {
                   </div>
 
                   <div className="mb-8">
-                    <table className="w-full text-left border-collapse">
+                    <table className="w-full text-left border-collapse min-w-[500px]">
                       <thead>
                         <tr className="border-b-2 border-slate-800">
                           <th className="py-2 text-sm font-bold text-slate-800">Item / Medicine</th>
@@ -335,7 +335,7 @@ const PharmacyDashboard = () => {
                   </div>
 
                   <div className="text-center text-sm text-slate-500 mt-12 border-t border-slate-200 pt-6">
-                    <p>Thank you for choosing MediCore Hospital.</p>
+                    <p>Thank you for choosing Ramu Hospital.</p>
                     <p>Get well soon!</p>
                   </div>
 

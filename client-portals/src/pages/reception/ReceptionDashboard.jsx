@@ -13,6 +13,7 @@ const ReceptionDashboard = () => {
   const [queue, setQueue] = useState([]);
   const [doctors, setDoctors] = useState([]);
   const [socket, setSocket] = useState(null);
+  const [opPrice, setOpPrice] = useState(500);
 
   // Form State
   const [formData, setFormData] = useState({
@@ -37,6 +38,7 @@ const ReceptionDashboard = () => {
   useEffect(() => {
     fetchQueue();
     fetchDoctors();
+    fetchSettings();
 
     const newSocket = io('https://hospital-managment-system-tsa1.onrender.com');
     setSocket(newSocket);
@@ -69,6 +71,16 @@ const ReceptionDashboard = () => {
       setDoctors(res.data);
     } catch (err) {
       console.error('Failed to fetch doctors:', err);
+    }
+  };
+
+  const fetchSettings = async () => {
+    try {
+      const res = await axios.get(`${API_BASE}/reception/settings`);
+      const opPriceSetting = res.data.find(s => s.key === 'op_price');
+      if (opPriceSetting) setOpPrice(Number(opPriceSetting.value));
+    } catch (err) {
+      console.error('Failed to fetch settings:', err);
     }
   };
 
@@ -152,9 +164,9 @@ const ReceptionDashboard = () => {
   };
 
   return (
-    <div className="flex bg-surface min-h-screen">
+    <div className="flex flex-col md:flex-row bg-surface min-h-screen">
       {/* Sidebar */}
-      <aside className="w-64 bg-white border-r border-slate-200 fixed h-screen z-10 transition-colors print:hidden">
+      <aside className="w-full md:w-64 bg-white border-b md:border-b-0 md:border-r border-slate-200 relative md:fixed h-auto md:h-screen z-10 transition-colors print:hidden shrink-0 flex flex-col md:block">
         <div className="p-6">
           <div className="flex items-center gap-3 mb-10">
             <div className="w-10 h-10 bg-primary rounded-xl flex items-center justify-center text-white shadow-lg shadow-primary/30">
@@ -162,7 +174,7 @@ const ReceptionDashboard = () => {
             </div>
             <div>
               <span className="font-display font-bold text-xl text-primary tracking-tight block leading-none">
-                MediCore
+                Ramu Hospital
               </span>
               <span className="text-xs text-slate-500 font-medium">Reception</span>
             </div>
@@ -192,7 +204,7 @@ const ReceptionDashboard = () => {
       </aside>
 
       {/* Main Content */}
-      <main className="ml-64 flex-1 p-8 print:p-0 print:ml-0 print:bg-white">
+      <main className="md:ml-64 flex-1 p-4 md:p-8 print:p-0 print:md:ml-0 print:ml-0 print:bg-white">
         
         {/* Only show header and content if not printing, or if printing but we have styles to hide them */}
         <div className="print:hidden">
@@ -210,7 +222,7 @@ const ReceptionDashboard = () => {
           {activeTab === 'queue' && (
             <section className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden mb-8">
               <div className="overflow-x-auto">
-                <table className="w-full text-left">
+                <table className="w-full text-left min-w-[600px]">
                   <thead className="bg-slate-50">
                     <tr>
                       <th className="px-6 py-4 font-semibold text-slate-600 text-sm">Token</th>
@@ -349,8 +361,8 @@ const ReceptionDashboard = () => {
               {/* History Panel */}
               <div className="w-2/3">
                 {selectedHistory ? (
-                  <div className="bg-white border border-slate-200 rounded-3xl p-8 shadow-sm">
-                    <div className="flex justify-between items-start mb-6 pb-6 border-b border-slate-200">
+                  <div className="bg-white border border-slate-200 rounded-3xl p-6 shadow-sm mb-8 overflow-x-auto">
+                    <div className="flex justify-between items-start mb-6 pb-6 border-b border-slate-200 min-w-max">
                       <div>
                         <h2 className="text-2xl font-display font-bold text-slate-900">{selectedHistory.patient.name}</h2>
                         <div className="flex gap-4 text-sm text-slate-500 font-mono mt-2">
@@ -456,7 +468,7 @@ const ReceptionDashboard = () => {
 
                 <div className="print-area">
                   <div className="text-center mb-6 border-b border-slate-200 pb-4">
-                    <h2 className="text-2xl font-display font-bold text-slate-800">MediCore Hospital</h2>
+                    <h2 className="text-2xl font-display font-bold text-slate-800">Ramu Hospital</h2>
                     <p className="text-sm text-slate-500">Outpatient Registration Card</p>
                   </div>
 
@@ -469,6 +481,17 @@ const ReceptionDashboard = () => {
                       <div className="text-right">
                         <p className="text-xs text-slate-500 font-medium uppercase tracking-wider">Date & Time</p>
                         <p className="text-sm font-medium">{opCardData.date}</p>
+                      </div>
+                    </div>
+
+                    <div className="flex justify-between items-center bg-slate-50 p-4 rounded-xl border border-slate-100">
+                      <div>
+                        <p className="text-xs text-slate-500 font-medium uppercase tracking-wider">Consultation Fee</p>
+                        <p className="text-2xl font-bold text-success">₹{opPrice}</p>
+                      </div>
+                      <div className="text-right">
+                        <p className="text-xs text-slate-500 font-medium uppercase tracking-wider">Payment Status</p>
+                        <p className="text-sm font-bold text-slate-700">PAID</p>
                       </div>
                     </div>
 

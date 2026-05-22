@@ -151,8 +151,8 @@ const DoctorDashboard = () => {
   };
 
   return (
-    <div className="flex bg-slate-50 min-h-screen text-slate-700">
-      <aside className="w-64 bg-white border-r border-slate-200 fixed h-screen z-10">
+    <div className="flex flex-col md:flex-row bg-slate-50 min-h-screen text-slate-700">
+      <aside className="w-full md:w-64 bg-white border-b md:border-b-0 md:border-r border-slate-200 relative md:fixed h-auto md:h-screen z-10 print:hidden shrink-0 flex flex-col md:block">
         <div className="p-6">
           <div className="flex items-center gap-3 mb-10">
             <div className="w-10 h-10 bg-primary rounded-xl flex items-center justify-center text-white shadow-lg shadow-primary/30">
@@ -160,7 +160,7 @@ const DoctorDashboard = () => {
             </div>
             <div>
               <span className="font-display font-bold text-xl text-slate-900 tracking-tight block leading-none">
-                MediCore
+                Ramu Hospital
               </span>
               <span className="text-xs text-slate-500 font-medium">Doctor Portal</span>
             </div>
@@ -202,7 +202,7 @@ const DoctorDashboard = () => {
 
       {selectedDoctor ? (
         activeTab === 'queue' ? (
-      <main className="ml-64 flex-1 p-8 flex gap-8">
+      <main className="md:ml-64 flex-1 p-4 md:p-8 flex flex-col md:flex-row gap-4 md:gap-8">
         {/* Left Column - Queue */}
         <div className="w-1/3 flex flex-col gap-6">
           <h1 className="text-2xl font-display font-bold text-slate-900">Today's Queue</h1>
@@ -375,7 +375,7 @@ const DoctorDashboard = () => {
         </div>
       </main>
         ) : (
-      <main className="ml-64 flex-1 p-8">
+      <main className="md:ml-64 flex-1 p-4 md:p-8">
         <div className="bg-white border border-slate-200 rounded-3xl p-8 shadow-sm h-full">
           <h2 className="text-2xl font-bold text-slate-900 mb-6">Patient Lab Reports</h2>
           {labReports.length === 0 ? (
@@ -401,7 +401,7 @@ const DoctorDashboard = () => {
       </main>
         )
       ) : (
-      <main className="ml-64 flex-1 p-8">
+      <main className="md:ml-64 flex-1 p-4 md:p-8">
         <header className="mb-8">
           <h1 className="text-3xl font-display font-bold text-slate-800">Doctor Portal</h1>
           <p className="text-slate-500">Select a doctor to view their queue and manage consultations.</p>
