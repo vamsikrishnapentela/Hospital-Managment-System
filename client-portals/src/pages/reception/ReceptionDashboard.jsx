@@ -6,7 +6,7 @@ import axios from 'axios';
 import { toast } from 'react-hot-toast';
 
 // --- API Service for Reception ---
-const API_BASE = 'http://localhost:5000/api';
+const API_BASE = 'https://hospital-managment-system-tsa1.onrender.com/api';
 
 const ReceptionDashboard = () => {
   const [activeTab, setActiveTab] = useState('queue'); // 'queue' | 'register' | 'records'
@@ -38,7 +38,7 @@ const ReceptionDashboard = () => {
     fetchQueue();
     fetchDoctors();
 
-    const newSocket = io('http://localhost:5000');
+    const newSocket = io('https://hospital-managment-system-tsa1.onrender.com');
     setSocket(newSocket);
 
     newSocket.on('queue-updated', () => {

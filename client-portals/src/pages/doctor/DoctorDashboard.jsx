@@ -5,7 +5,7 @@ import io from 'socket.io-client';
 import axios from 'axios';
 import { toast } from 'react-hot-toast';
 
-const API_BASE = 'http://localhost:5000/api';
+const API_BASE = 'https://hospital-managment-system-tsa1.onrender.com/api';
 
 const DoctorDashboard = () => {
   const [doctors, setDoctors] = useState([]);
@@ -30,7 +30,7 @@ const DoctorDashboard = () => {
 
   useEffect(() => {
     fetchDoctors();
-    const newSocket = io('http://localhost:5000');
+    const newSocket = io('https://hospital-managment-system-tsa1.onrender.com');
     setSocket(newSocket);
 
     newSocket.on('queue-updated', () => {

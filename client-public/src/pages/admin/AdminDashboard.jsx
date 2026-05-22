@@ -13,7 +13,7 @@ const AdminDashboard = () => {
 
   const fetchAppointments = async () => {
     try {
-      const res = await fetch('http://localhost:5000/api/appointments');
+      const res = await fetch('https://hospital-managment-system-tsa1.onrender.com/api/appointments');
       const data = await res.json();
       setAppointments(data);
       setLoading(false);
@@ -25,7 +25,7 @@ const AdminDashboard = () => {
 
   const updateStatus = async (id, status) => {
     try {
-      await fetch(`http://localhost:5000/api/appointments/${id}`, {
+      await fetch(`https://hospital-managment-system-tsa1.onrender.com/api/appointments/${id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ status })

@@ -5,7 +5,7 @@ import axios from 'axios';
 import { toast } from 'react-hot-toast';
 import io from 'socket.io-client';
 
-const API_BASE = 'http://localhost:5000/api';
+const API_BASE = 'https://hospital-managment-system-tsa1.onrender.com/api';
 
 const Sidebar = () => (
   <aside className="w-64 bg-white border-r border-slate-200 fixed h-screen z-10">
@@ -40,7 +40,7 @@ const LabDashboard = () => {
 
   useEffect(() => {
     fetchTests();
-    const newSocket = io('http://localhost:5000');
+    const newSocket = io('https://hospital-managment-system-tsa1.onrender.com');
     setSocket(newSocket);
     
     newSocket.on('queue-updated', () => {

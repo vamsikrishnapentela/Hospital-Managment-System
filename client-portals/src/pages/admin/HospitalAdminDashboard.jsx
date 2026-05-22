@@ -3,7 +3,7 @@ import { FaUserShield, FaUsersCog, FaSignOutAlt, FaPlus, FaTrash } from 'react-i
 import axios from 'axios';
 import { toast } from 'react-hot-toast';
 
-const API_BASE = 'http://localhost:5000/api';
+const API_BASE = 'https://hospital-managment-system-tsa1.onrender.com/api';
 
 const Sidebar = ({ activeTab, setActiveTab }) => (
   <aside className="w-64 bg-white border-r border-slate-200 fixed h-screen z-10">

@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import io from 'socket.io-client';
 import axios from 'axios';
 
-const API_BASE = 'http://localhost:5000/api';
+const API_BASE = 'https://hospital-managment-system-tsa1.onrender.com/api';
 
 const DisplayPortal = () => {
   const [nowCallingList, setNowCallingList] = useState([]);
@@ -53,7 +53,7 @@ const DisplayPortal = () => {
     const timer = setInterval(() => setTime(new Date()), 1000);
     
     // Socket
-    const socket = io('http://localhost:5000');
+    const socket = io('https://hospital-managment-system-tsa1.onrender.com');
     
     socket.on('call-token', (tokenData) => {
       setNowCallingList(prev => {
